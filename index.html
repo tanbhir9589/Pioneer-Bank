@@ -32,7 +32,7 @@
               <div class="col-md-4">
                  <div class="withdraw status">
                     <h5>Withdraw</h5>
-                    <h2>$ <span id="currentWithdrawNumber">00</span> </h2>
+                    <h2>$ <span id="currentWithdraw">00</span> </h2>
                  </div>
               </div>
               <div class="col-md-4">
@@ -75,16 +75,17 @@
         const depositButton = document.getElementById("addDepositBtn");
              depositButton.addEventListener("click",function(){
                   const depositNumber = getInputNumber("depositAmount");
+        // ai code gula ka function transfer kor che .
                 //  const depositAmount = document.getElementById("depositAmount").value;
                 //   const depositNumber = parseFloat(depositAmount);
-                   // ai code gula ka function transfer kor che .
+        // ai code gula ka function transfer kor che .
                   // const currentDeposit = document.getElementById("currentDeposit").innerText;
                   // const currentDepositNumber = parseFloat(currentDeposit);
                   // const totalDeposit = depositNumber + currentDepositNumber;         
                   // document.getElementById("currentDeposit").innerText = totalDeposit;
                
-                 document.getElementById("depositAmount").value = " ";
-                
+               //  document.getElementById("depositAmount").value = " ";
+                  removeInputValue("depositAmount");
                   updateSpanText("currentDeposit",depositNumber);
                   updateSpanText("currentBalance",depositNumber);
              })
@@ -92,13 +93,15 @@
               const withdrawBtn = document.getElementById("addWithdrawBtn");
                 withdrawBtn.addEventListener("click",function(){
                   const withdrawNumber = getInputNumber("withdrawAmount");
-                       
-                     document.getElementById("currentWithdrawNumber").innerText = withdrawNumber;
+                      updateSpanText("currentWithdraw",withdrawNumber); 
+                      updateSpanText("currentBalance",-1 * withdrawNumber);
+                      removeInputValue("withdrawAmount");
 
-
-
-                    // document.getElementById("currentNumber").value = " ";                 
+                 //document.getElementById("withdrawAmount").value = " ";                 
                 })
+                function removeInputValue(id) {
+                       document.getElementById(id).value = " ";
+                }
               function getInputNumber(id) {
                        const amount = document.getElementById(id).value;
                        const amountNumber = parseFloat(amount);
